@@ -1,0 +1,40 @@
+C:\Users\dtw20>node --version
+v24.14.1
+
+C:\Users\dtw20>npm -v
+11.11.0
+
+C:\Users\dtw20>where node
+C:\Program Files\nodejs\node.exe
+
+C:\Users\dtw20>where npm
+C:\Program Files\nodejs\npm
+C:\Program Files\nodejs\npm.cmd
+
+
+npm install -g @angular/cli
+
+npx @angular/cli@18.0.0 new angular18-form-template
+npx @angular/cli@18.0.0 new angular18-form-reactive
+
+
+check angular version
+ng version
+
+
+vs code extensions:
+Angular Essentials
+john papa
+
+Angular Language Service
+angular.dev
+
+run the angular app
+npm install
+npm start
+
+
+ng g c user
+ng g c tasks
+ng g c tasks/task
+ng g c tasks/new-task --skip-tests
