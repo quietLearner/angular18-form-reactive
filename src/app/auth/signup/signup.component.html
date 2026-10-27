@@ -1,0 +1,305 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  (input)="completed = false"
+  novalidate
+>
+  <h2>Welcome on board!</h2>
+  <p class="form-intro">
+    Create your profile to get started. All fields are required unless marked
+    optional.
+  </p>
+
+  @if (submitted && form.invalid) {
+    <p class="form-notice error-notice" role="alert">
+      Please correct the highlighted fields below, then sign up again.
+    </p>
+  }
+
+  <fieldset>
+    <legend>Your account</legend>
+    <div class="control">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        autocomplete="email"
+        formControlName="email"
+        required
+        [attr.aria-invalid]="!!getErrorMessage(form.controls.email, 'Email')"
+        aria-describedby="email-error"
+      />
+      @if (getErrorMessage(form.controls.email, "Email"); as error) {
+        <p class="control-error" id="email-error">{{ error }}</p>
+      }
+    </div>
+
+    <div class="control-row" formGroupName="passwords">
+      <div class="control">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          autocomplete="new-password"
+          formControlName="password"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(
+              form.controls.passwords.controls.password,
+              'Password'
+            )
+          "
+          aria-describedby="password-hint password-error"
+        />
+        <p class="field-hint" id="password-hint">Use at least 3 characters.</p>
+        @if (
+          getErrorMessage(
+            form.controls.passwords.controls.password,
+            "Password"
+          );
+          as error
+        ) {
+          <p class="control-error" id="password-error">{{ error }}</p>
+        }
+      </div>
+      <div class="control">
+        <label for="confirm-password">Confirm password</label>
+        <input
+          id="confirm-password"
+          type="password"
+          name="confirm-password"
+          autocomplete="new-password"
+          formControlName="confirmPassword"
+          required
+          [attr.aria-invalid]="!!confirmPasswordError"
+          aria-describedby="confirm-password-error"
+        />
+        @if (confirmPasswordError; as error) {
+          <p class="control-error" id="confirm-password-error">{{ error }}</p>
+        }
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>About you</legend>
+    <div class="control-row">
+      <div class="control">
+        <label for="first-name">First name</label>
+        <input
+          id="first-name"
+          type="text"
+          name="first-name"
+          autocomplete="given-name"
+          formControlName="firstName"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(form.controls.firstName, 'First name')
+          "
+          aria-describedby="first-name-error"
+        />
+        @if (getErrorMessage(form.controls.firstName, "First name"); as error) {
+          <p class="control-error" id="first-name-error">{{ error }}</p>
+        }
+      </div>
+      <div class="control">
+        <label for="last-name">Last name</label>
+        <input
+          id="last-name"
+          type="text"
+          name="last-name"
+          autocomplete="family-name"
+          formControlName="lastName"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(form.controls.lastName, 'Last name')
+          "
+          aria-describedby="last-name-error"
+        />
+        @if (getErrorMessage(form.controls.lastName, "Last name"); as error) {
+          <p class="control-error" id="last-name-error">{{ error }}</p>
+        }
+      </div>
+    </div>
+    <div class="control">
+      <label for="role">What best describes your role?</label>
+      <select
+        id="role"
+        name="role"
+        formControlName="role"
+        required
+        [attr.aria-invalid]="!!getErrorMessage(form.controls.role, 'Role')"
+        aria-describedby="role-error"
+      >
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="employee">Employee</option>
+        <option value="founder">Founder</option>
+        <option value="other">Other</option>
+      </select>
+      @if (getErrorMessage(form.controls.role, "Role"); as error) {
+        <p class="control-error" id="role-error">{{ error }}</p>
+      }
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="address">
+    <legend>Your address</legend>
+    <div class="control-row">
+      <div class="control">
+        <label for="street">Street</label>
+        <input
+          id="street"
+          type="text"
+          name="street"
+          autocomplete="address-line1"
+          formControlName="street"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(form.controls.address.controls.street, 'Street')
+          "
+          aria-describedby="street-error"
+        />
+        @if (
+          getErrorMessage(form.controls.address.controls.street, "Street");
+          as error
+        ) {
+          <p class="control-error" id="street-error">{{ error }}</p>
+        }
+      </div>
+      <div class="control">
+        <label for="number">House number</label>
+        <input
+          id="number"
+          type="text"
+          name="number"
+          formControlName="number"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(
+              form.controls.address.controls.number,
+              'House number'
+            )
+          "
+          aria-describedby="number-error"
+        />
+        @if (
+          getErrorMessage(
+            form.controls.address.controls.number,
+            "House number"
+          );
+          as error
+        ) {
+          <p class="control-error" id="number-error">{{ error }}</p>
+        }
+      </div>
+    </div>
+    <div class="control-row">
+      <div class="control">
+        <label for="postal-code">Postal code</label>
+        <input
+          id="postal-code"
+          type="text"
+          name="postal-code"
+          autocomplete="postal-code"
+          formControlName="postalCode"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(
+              form.controls.address.controls.postalCode,
+              'Postal code'
+            )
+          "
+          aria-describedby="postal-code-error"
+        />
+        @if (
+          getErrorMessage(
+            form.controls.address.controls.postalCode,
+            "Postal code"
+          );
+          as error
+        ) {
+          <p class="control-error" id="postal-code-error">{{ error }}</p>
+        }
+      </div>
+      <div class="control">
+        <label for="city">City</label>
+        <input
+          id="city"
+          type="text"
+          name="city"
+          autocomplete="address-level2"
+          formControlName="city"
+          required
+          [attr.aria-invalid]="
+            !!getErrorMessage(form.controls.address.controls.city, 'City')
+          "
+          aria-describedby="city-error"
+        />
+        @if (
+          getErrorMessage(form.controls.address.controls.city, "City");
+          as error
+        ) {
+          <p class="control-error" id="city-error">{{ error }}</p>
+        }
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset formArrayName="source">
+    <legend>
+      How did you find us? <span class="optional">(optional)</span>
+    </legend>
+    <div class="source-options">
+      <div class="control checkbox-control">
+        <input type="checkbox" id="google" name="google" formControlName="0" />
+        <label for="google">Google</label>
+      </div>
+      <div class="control checkbox-control">
+        <input type="checkbox" id="friend" name="friend" formControlName="1" />
+        <label for="friend">Referred by a friend</label>
+      </div>
+      <div class="control checkbox-control">
+        <input type="checkbox" id="other" name="other" formControlName="2" />
+        <label for="other">Other</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="terms">
+    <div class="control checkbox-control">
+      <input
+        type="checkbox"
+        id="terms-and-conditions"
+        name="terms"
+        formControlName="agree"
+        required
+        [attr.aria-invalid]="
+          !!getErrorMessage(form.controls.agree, 'Agreement')
+        "
+        aria-describedby="terms-error"
+      />
+      <label for="terms-and-conditions"
+        >I agree to the terms and conditions</label
+      >
+    </div>
+    @if (getErrorMessage(form.controls.agree, "Agreement"); as error) {
+      <p class="control-error" id="terms-error">{{ error }}</p>
+    }
+  </div>
+
+  @if (completed) {
+    <p class="form-notice success-notice" role="status">
+      All fields are valid. Your details are ready to submit.
+    </p>
+  }
+
+  <div class="form-actions">
+    <button type="button" class="button button-flat" (click)="onReset()">
+      Reset
+    </button>
+    <button type="submit" class="button">Sign up</button>
+  </div>
+</form>

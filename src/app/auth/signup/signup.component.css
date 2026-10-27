@@ -1,0 +1,35 @@
+:host { display: block; }
+form { max-width: 46rem; }
+h2 { margin: 0 0 .5rem; font-size: 1.8rem; }
+.form-intro { color: #bed0d0; line-height: 1.5; margin-bottom: 1.5rem; }
+fieldset { border: 0; border-top: 1px solid #587373; margin: 1.5rem 0; padding: 1rem 0 0; min-width: 0; }
+legend { padding: 0 .6rem 0 0; font-weight: bold; font-size: 1.05rem; }
+.control-row { gap: 1.25rem; align-items: flex-start; }
+.control-row .control { min-width: 0; }
+.control { margin: .5rem 0 1rem; }
+.control label { color: #bed0d0; }
+.control input, .control select { max-width: none; min-height: 2.75rem; }
+.control input:not([type="checkbox"]), .control select { background: #edf3f3; color: #142020; }
+.control input:focus-visible, .control select:focus-visible, .button:focus-visible { outline: 3px solid #7bddce; outline-offset: 3px; }
+.control-error { display: block; height: auto; margin: .4rem 0 0; padding: 0; color: #ffd0b5; font-size: .9rem; line-height: 1.45; }
+.field-hint, .optional { color: #bed0d0; font-size: .85rem; font-weight: normal; }
+.field-hint { margin: .4rem 0 0; }
+.source-options { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+.control.checkbox-control { align-items: center; gap: .5rem; }
+.checkbox-control label { text-transform: none; font-size: .95rem; line-height: 1.5; }
+.control input[type="checkbox"] { min-height: auto; width: 1.1rem; height: 1.1rem; margin: 0; flex-shrink: 0; accent-color: #147b73; }
+.terms { border-top: 1px solid #587373; padding-top: 1rem; }
+.terms .control { margin-bottom: 0; }
+.form-notice { padding: .9rem 1rem; border-radius: 4px; line-height: 1.5; }
+.error-notice { background: #48332b; color: #ffd0b5; border: 1px solid #d59b79; }
+.success-notice { background: #183f35; color: #b8f0d2; border: 1px solid #7dc7a4; }
+.control:has([aria-invalid="true"]) label { color: #ffd0b5; }
+.control:has([aria-invalid="false"]) label { color: #bed0d0; }
+.control input:not([type="checkbox"])[aria-invalid="false"] { background: #edf3f3; border: 1px solid #758a8a; }
+.control input[aria-invalid="true"], .control select[aria-invalid="true"] { border: 2px solid #e58e74; background: #fff0eb; }
+.form-actions { margin-top: 1.5rem; }
+@media (max-width: 540px) {
+  form { padding: 1.25rem; margin: 1.5rem auto; }
+  .control-row { flex-direction: column; gap: 0; }
+  .control-row .control { width: 100%; }
+}
